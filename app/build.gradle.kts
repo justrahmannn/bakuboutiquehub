@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.atl.bakuboutiquehub"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.atl.bakuboutiquehub"
@@ -36,6 +36,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
 }
 

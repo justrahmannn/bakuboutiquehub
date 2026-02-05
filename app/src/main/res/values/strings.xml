@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">BakuBoutiqueHub</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="luxury_dresses_for_every_occasion">Luxury dresses for every occasion</string>
+    <string name="next">Sonrakı</string>
+    <string name="skip">Keç</string>
+    <string name="sustainable_fashion_smarter_choice">Sustainable fashion,smarter choice</string>
+    <string name="do_you_have_an_account">Hesabınız var?</string>
+    <string name="login">Giriş edin</string>
+    <string name="easy_and_premium_rental">asan və premium kirayəsi</string>
+    <string name="women_s_dresses_for_events">Qadın paltarlarının tədbirə görə</string>
+    <string name="start">Başlayaq</string>
+    <string name="sign_up"> Qeydiyyatdan keçin</string>
 </resources>
