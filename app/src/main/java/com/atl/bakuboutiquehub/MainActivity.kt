@@ -1,5 +1,6 @@
 package com.atl.bakuboutiquehub
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,25 +21,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLastDestination() {
-        val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
-        val isFirstTime = prefs.getBoolean("is_first_time", true)
-        val lastFragmentId = prefs.getInt("last_fragment_id", R.id.onBoarding1Fragment)
+        val sharedPref = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
 
+        // NavHostFragment-i tap
         val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
+            ?: return // Əgər tapılmadısa geri qayıt
 
         val navController = navHostFragment.navController
-        val navGraph = navController.navInflater.inflate(R.navigation.app_nav)
 
-        // Start destination-ı təyin et
-        val startDestination = if (isFirstTime) {
-            R.id.onBoarding1Fragment
-        } else {
-            lastFragmentId
+        // Əgər istifadəçi daxil olubsa
+        val isLoggedIn = sharedPref.getBoolean("is_logged_in", false)
+
+        if (isLoggedIn) {
+            try {
+                // Graph artıq activity_main.xml-də set olunub, yenidən set etməyə ehtiyac yoxdur
+                navController.navigate(R.id.homeFragment)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
-
-        navGraph.setStartDestination(startDestination)
-        navController.graph = navGraph
+        // Əks halda, default start destination-da qalacaq (nav_graph.xml-dəki startDestination)
     }
 
     override fun onPause() {

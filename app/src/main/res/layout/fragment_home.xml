@@ -1,15 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homescreens.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".homescreens.HomeFragment"
+    android:background="#F5F1ED">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home fragment"
-        android:gravity="center"/>
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hesabınız yoxdur?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:textColor="#B89968"
+        android:textSize="20sp" />
 
-</FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question"
+        >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signupbutton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Qeydiyyat"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#B89968"
+            app:backgroundTint="#FFFFFF"
+            app:strokeColor="#B89968"
+            app:strokeWidth="2dp"
+            app:cornerRadius="28dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginbutton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Giriş"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#B89968"
+            app:cornerRadius="28dp" />
+
+    </LinearLayout>
+
+    <!-- Xətt (divider) -->
+    <View
+        android:id="@+id/dividerLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#B89968"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonsContainer" />
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:id="@+id/xosgelmisiniz"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xoş gəlmisiniz: "
+        android:textColor="#2C2C2C"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
+    <TextView
+        android:id="@+id/ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/xosgelmisiniz"
+        app:layout_constraintTop_toTopOf="@id/xosgelmisiniz"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:textColor="@color/black"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

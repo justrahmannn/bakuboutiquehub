@@ -12,11 +12,10 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // 2 saniyə sonra MainActivity-ə keçid
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 2000) // 2000ms = 2 saniyə
+        }, 2000)
     }
 }

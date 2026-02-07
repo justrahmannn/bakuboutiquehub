@@ -8,13 +8,12 @@
     android:background="#F5F1ED"
     android:padding="24dp">
 
-    <!-- Başlıq -->
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Giriş edin"
+        android:text="@string/login"
         android:textColor="#2C2C2C"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -22,33 +21,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Alt başlıq -->
     <TextView
         android:id="@+id/subtitleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Xoş gəldiniz. Giriş məlumatlarınızı daxil edin"
+        android:text="@string/xo_g_ldiniz_giri_m_lumatlar_n_z_daxil_edin"
         android:textColor="#6C6C6C"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleText" />
 
-    <!-- E-poçt label -->
     <TextView
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="E-poçt"
+        android:text="@string/e_po_t"
         android:textColor="#2C2C2C"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subtitleText" />
 
-    <!-- E-poçt input -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailInputLayout"
         android:layout_width="0dp"
@@ -73,26 +69,24 @@
             android:id="@+id/emailInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-poçt ünvanı"
+            android:hint="@string/e_po_t_nvan"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:textColorHint="#AAAAAA"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Parol label -->
     <TextView
         android:id="@+id/passwordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Parol"
+        android:text="@string/parol"
         android:textColor="#2C2C2C"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailInputLayout" />
 
-    <!-- Parol input -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordInputLayout"
         android:layout_width="0dp"
@@ -119,20 +113,19 @@
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Parol"
+            android:hint="@string/parol"
             android:inputType="textPassword"
             android:padding="16dp"
             android:textColorHint="#AAAAAA"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Giriş button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
-        android:text="Giriş"
+        android:text="@string/giri"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
@@ -142,26 +135,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
 
-    <!-- Və ya text -->
     <TextView
         android:id="@+id/orText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Və ya"
+        android:text="@string/v_ya"
         android:textColor="#6C6C6C"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
-    <!-- Google button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/googleButton"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
-        android:text="Google ilə davam edin"
+        android:text="@string/google_il_davam_edin"
         android:textSize="15sp"
         android:textColor="#2C2C2C"
         android:textAllCaps="false"
@@ -177,7 +168,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/orText" />
 
-    <!-- Qeydiyyat linki -->
     <LinearLayout
         android:id="@+id/signupContainer"
         android:layout_width="wrap_content"
@@ -192,7 +182,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hesabınız yoxdur? "
+            android:text="@string/hesab_n_z_yoxdur"
             android:textColor="#6C6C6C"
             android:textSize="14sp" />
 
@@ -200,7 +190,7 @@
             android:id="@+id/signupLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Qeydiyyatdan keç"
+            android:text="@string/qeydiyyatdan_ke"
             android:textColor="#B89968"
             android:textSize="14sp"
             android:textStyle="bold" />

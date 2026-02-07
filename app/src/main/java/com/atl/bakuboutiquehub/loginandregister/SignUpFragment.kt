@@ -1,60 +1,149 @@
 package com.atl.bakuboutiquehub.loginandregister
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.atl.bakuboutiquehub.R
+import com.atl.bakuboutiquehub.databinding.FragmentSignUpBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignUpFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+    ): View {
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.googleButton.setOnClickListener {
+            signInWithGoogle()
+        }
+
+        binding.nextButton.setOnClickListener {
+            if (isInputValid()) {
+                showCustomTermsDialog()
             }
+        }
+
+        binding.loginLink.setOnClickListener {
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
+        }
+    }
+
+    private fun signInWithGoogle() {
+        Toast.makeText(requireContext(), "Google ilə qeydiyyat tezliklə aktiv olacaq", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun isInputValid(): Boolean {
+        val email = binding.emailInput.text.toString().trim()
+        val phone = binding.phoneInput.text.toString().trim()
+        val password = binding.passwordInput.text.toString().trim()
+        val confirmPassword = binding.confirmPasswordInput.text.toString().trim()
+
+        clearErrors()
+
+        return when {
+            email.isEmpty() -> {
+                binding.emailInputLayout.error = "E-poçt boş ola bilməz"
+                false
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                binding.emailInputLayout.error = "Düzgün e-poçt formatı daxil edin"
+                false
+            }
+            phone.isEmpty() -> {
+                binding.phoneInputLayout.error = "Mobil nömrə daxil edin"
+                false
+            }
+            phone.length < 9 -> {
+                binding.phoneInputLayout.error = "Nömrə çox qısadır"
+                false
+            }
+            password.isEmpty() -> {
+                binding.passwordInputLayout.error = "Parol daxil edin"
+                false
+            }
+            password.length < 6 -> {
+                binding.passwordInputLayout.error = "Parol minimum 6 simvol olmalıdır"
+                false
+            }
+            confirmPassword != password -> {
+                binding.confirmPasswordInputLayout.error = "Parollar eyni deyil"
+                false
+            }
+            !binding.termsCheckbox.isChecked -> {
+                Toast.makeText(requireContext(), "İstifadəçi şərtlərini qəbul etməlisiniz", Toast.LENGTH_SHORT).show()
+                false
+            }
+            else -> true
+        }
+    }
+
+    private fun showCustomTermsDialog() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_terms, null)
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(dialogView)
+
+        val alertDialog = builder.create()
+
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        dialogView.findViewById<Button>(R.id.btnAccept).setOnClickListener {
+            binding.termsCheckbox.isChecked = true
+            alertDialog.dismiss()
+            completeRegistration()
+        }
+
+        dialogView.findViewById<Button>(R.id.btnReject).setOnClickListener {
+            binding.termsCheckbox.isChecked = false
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+    private fun completeRegistration() {
+        val sharedPref = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        sharedPref.edit().putBoolean("isLoggedIn", true).apply()
+
+
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.signUpFragment, true)
+            .build()
+
+        val bundle = Bundle()
+        val userEmail = binding.emailInput.text.toString().trim()
+        bundle.putString("user_email", userEmail)
+
+
+        findNavController().navigate(R.id.action_signUpFragment_to_boutiqueorUserFragment2, bundle, navOptions)
+    }
+
+    private fun clearErrors() {
+        binding.emailInputLayout.error = null
+        binding.phoneInputLayout.error = null
+        binding.passwordInputLayout.error = null
+        binding.confirmPasswordInputLayout.error = null
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

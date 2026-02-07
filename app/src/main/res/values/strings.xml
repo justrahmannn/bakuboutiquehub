@@ -12,4 +12,13 @@
     <string name="women_s_dresses_for_events">Qadın paltarlarının tədbirə görə</string>
     <string name="start">Başlayaq</string>
     <string name="sign_up"> Qeydiyyatdan keçin</string>
+    <string name="xo_g_ldiniz_giri_m_lumatlar_n_z_daxil_edin">Xoş gəldiniz. Giriş məlumatlarınızı daxil edin</string>
+    <string name="e_po_t">E-poçt</string>
+    <string name="e_po_t_nvan">E-poçt ünvanı</string>
+    <string name="parol">Parol</string>
+    <string name="giri">Giriş</string>
+    <string name="v_ya">Və ya</string>
+    <string name="google_il_davam_edin">Google ilə davam edin</string>
+    <string name="hesab_n_z_yoxdur">Hesabınız yoxdur?</string>
+    <string name="qeydiyyatdan_ke">Qeydiyyatdan keç</string>
 </resources>
