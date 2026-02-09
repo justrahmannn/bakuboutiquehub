@@ -45,11 +45,14 @@ class BoutiqueorUserFragment : Fragment() {
             if (selectedRole.isEmpty()) {
                 Toast.makeText(context, "Zəhmət olmasa seçim edin", Toast.LENGTH_SHORT).show()
             } else {
-                if (selectedRole == "customer") {
-                    findNavController().navigate(R.id.action_boutiqueorUserFragment2_to_customerInfoFragment)
-                } else {
-                    findNavController().navigate(R.id.action_boutiqueorUserFragment2_to_boutiqueInfoFragment)
+                val bundle = Bundle().apply {
+                    putString("role", selectedRole)
                 }
+
+                findNavController().navigate(
+                    R.id.action_boutiqueorUserFragment2_to_customerInfoFragment,
+                    bundle
+                )
             }
         }
     }

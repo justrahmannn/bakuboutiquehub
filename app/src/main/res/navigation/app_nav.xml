@@ -87,9 +87,6 @@
         <action
             android:id="@+id/action_boutiqueorUserFragment2_to_customerInfoFragment"
             app:destination="@id/customerInfoFragment" />
-        <action
-            android:id="@+id/action_boutiqueorUserFragment2_to_boutiqueInfoFragment"
-            app:destination="@id/boutiqueInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/customerInfoFragment"
@@ -99,9 +96,4 @@
             android:id="@+id/action_customerInfoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/boutiqueInfoFragment"
-        android:name="com.atl.bakuboutiquehub.loginandregister.BoutiqueInfoFragment"
-        android:label="fragment_boutique_info"
-        tools:layout="@layout/fragment_boutique_info" />
 </navigation>

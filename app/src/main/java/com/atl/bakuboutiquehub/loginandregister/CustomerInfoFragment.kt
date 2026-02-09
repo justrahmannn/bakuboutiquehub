@@ -33,6 +33,23 @@ class CustomerInfoFragment : Fragment() {
             validateAndProceed()
             Toast.makeText(requireContext(), "Qeydiyyat uğurla tamamlandı", Toast.LENGTH_SHORT).show()
 
+
+
+        }
+
+        val role = arguments?.getString("role")
+
+        if (role == "customer") {
+
+            binding.tvLabelShopName.visibility = View.GONE
+            binding.tvLabelVerification.visibility = View.GONE
+
+            binding.tilShopName.visibility = View.GONE
+            binding.tilVerificationCode.visibility = View.GONE
+
+            val params = binding.btnNext.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
+            params.topToBottom = binding.tilUsername.id
+            binding.btnNext.layoutParams = params
         }
     }
 
