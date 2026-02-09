@@ -23,30 +23,25 @@ class MainActivity : AppCompatActivity() {
     private fun checkLastDestination() {
         val sharedPref = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
 
-        // NavHostFragment-i tap
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
-            ?: return // Əgər tapılmadısa geri qayıt
+            ?: return
 
         val navController = navHostFragment.navController
 
-        // Əgər istifadəçi daxil olubsa
         val isLoggedIn = sharedPref.getBoolean("is_logged_in", false)
 
         if (isLoggedIn) {
             try {
-                // Graph artıq activity_main.xml-də set olunub, yenidən set etməyə ehtiyac yoxdur
                 navController.navigate(R.id.homeFragment)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
-        // Əks halda, default start destination-da qalacaq (nav_graph.xml-dəki startDestination)
     }
 
     override fun onPause() {
         super.onPause()
-        // Hazırkı fragmenti yadda saxla
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
 

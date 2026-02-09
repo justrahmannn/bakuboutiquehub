@@ -61,7 +61,6 @@
 
     </LinearLayout>
 
-    <!-- Xətt (divider) -->
     <View
         android:id="@+id/dividerLine"
         android:layout_width="0dp"

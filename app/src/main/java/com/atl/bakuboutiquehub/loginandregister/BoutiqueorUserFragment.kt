@@ -32,7 +32,6 @@ class BoutiqueorUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Ekran açılan kimi heç bir funksiya çağırılmır, selectedRole boşdur.
 
         binding.cardCustomer.setOnClickListener {
             selectRole("customer")
@@ -43,11 +42,9 @@ class BoutiqueorUserFragment : Fragment() {
         }
 
         binding.nextbutton.setOnClickListener {
-            // Seçim edilib-edilmədiyini burada yoxlayırıq
             if (selectedRole.isEmpty()) {
                 Toast.makeText(context, "Zəhmət olmasa seçim edin", Toast.LENGTH_SHORT).show()
             } else {
-                // Seçimə uyğun keçid
                 if (selectedRole == "customer") {
                     findNavController().navigate(R.id.action_boutiqueorUserFragment2_to_customerInfoFragment)
                 } else {
@@ -60,19 +57,15 @@ class BoutiqueorUserFragment : Fragment() {
     private fun selectRole(role: String) {
         selectedRole = role
         if (role == "customer") {
-            // Müştəri seçildi: Yaşıl
             binding.cardCustomer.strokeColor = Color.parseColor("#4CAF50")
             binding.cardCustomer.strokeWidth = 5
 
-            // Butiq sahibi: Boz
             binding.cardOwner.strokeColor = Color.parseColor("#D3D3D3")
             binding.cardOwner.strokeWidth = 2
         } else {
-            // Butiq sahibi seçildi: Yaşıl
             binding.cardOwner.strokeColor = Color.parseColor("#4CAF50")
             binding.cardOwner.strokeWidth = 5
 
-            // Müştəri: Boz
             binding.cardCustomer.strokeColor = Color.parseColor("#D3D3D3")
             binding.cardCustomer.strokeWidth = 2
         }

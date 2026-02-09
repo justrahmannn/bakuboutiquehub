@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F5F1ED">
 
-    <!-- Logo mətn -->
     <TextView
         android:id="@+id/logoText"
         android:layout_width="wrap_content"
