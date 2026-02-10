@@ -28,4 +28,7 @@
     <string name="unvan">Ünvan</string>
     <string name="map_button">Xəritədən seçin</string>
     <string name="qısa_bio_tesvir">Qısa Bio/Təsvir</string>
+    <string name="ish_gunlenizi_secin">İş günlərinizi seçin</string>
+    <string name="ish_saatlarinizi_secin">İş saatınızı seçin</string>
+    <string name="sosial_media_linkleri">Sosial media linkləri</string>
 </resources>
