@@ -21,4 +21,11 @@
     <string name="google_il_davam_edin">Google ilə davam edin</string>
     <string name="hesab_n_z_yoxdur">Hesabınız yoxdur?</string>
     <string name="qeydiyyatdan_ke">Qeydiyyatdan keç</string>
+    <string name="biznesinizin_elave_melumatlarini_qeyd_edin">Biznesinizin əlavə məlumatlarını qeyd edin</string>
+    <string name="biznes_info">Biznes məlumatları</string>
+    <string name="logonuzu_elave_edin">Logonuzu əlavə edin</string>
+    <string name="fayl_secin">Faylınızı seçin</string>
+    <string name="unvan">Ünvan</string>
+    <string name="map_button">Xəritədən seçin</string>
+    <string name="qısa_bio_tesvir">Qısa Bio/Təsvir</string>
 </resources>

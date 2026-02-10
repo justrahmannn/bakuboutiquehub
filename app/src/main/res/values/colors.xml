@@ -4,7 +4,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_beige">#F5F1ED</color>
     <color name="gold">#B89968</color>
+    <color name="button_color">#B79965</color>
     <color name="text_dark">#2C2C2C</color>
     <color name="text_gray">#6C6C6C</color>
+    <color name="text_gray52">#454C52</color>
+    <color name="text_grayAD">#9EA5AD</color>
+    <color name="upload_background_stroke">#C0C0C0</color>
+    <color name="upload_background">#EFEDEC</color>
+    <color name="button_mapcolor">#454C52</color>
 
 </resources>

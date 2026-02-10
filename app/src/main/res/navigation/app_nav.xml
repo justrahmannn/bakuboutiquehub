@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
-    app:startDestination="@id/onBoarding1Fragment">
+    app:startDestination="@id/registerBusinessInfoFragment">
 
     <fragment
         android:id="@+id/onBoarding1Fragment"
@@ -96,4 +96,9 @@
             android:id="@+id/action_customerInfoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/registerBusinessInfoFragment"
+        android:name="com.atl.bakuboutiquehub.loginandregister.RegisterBusinessInfoFragment"
+        android:label="fragment_register_business_info"
+        tools:layout="@layout/fragment_register_business_info" />
 </navigation>
