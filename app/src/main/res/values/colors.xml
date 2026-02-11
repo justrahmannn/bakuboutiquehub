@@ -12,5 +12,6 @@
     <color name="upload_background_stroke">#C0C0C0</color>
     <color name="upload_background">#EFEDEC</color>
     <color name="button_mapcolor">#454C52</color>
+    <color name="nav_button_icon">#B79965</color>
 
 </resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- selected: bottom dot -->
+    <item android:state_checked="true">
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@android:color/transparent"/>
+                </shape>
+            </item>
+
+            <!-- dot -->
+            <item android:gravity="center_horizontal|bottom"
+                android:bottom="6dp">
+                <shape android:shape="oval">
+                    <size android:width="4dp" android:height="4dp"/>
+                    <solid android:color="@color/nav_button_icon"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- unselected -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+</selector>
