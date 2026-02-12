@@ -6,10 +6,38 @@
     app:startDestination="@id/onBoarding1Fragment">
 
     <fragment
+        android:id="@+id/home"
+        android:name="com.atl.bakuboutiquehub.homescreens.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_home_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/like"
+        android:name="com.atl.bakuboutiquehub.homescreens.LikeFragment"
+        android:label="Bəyəndiklərim" />
+
+    <fragment
+        android:id="@+id/chat"
+        android:name="com.atl.bakuboutiquehub.homescreens.ChatFragment"
+        android:label="Mesajlar" />
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.atl.bakuboutiquehub.homescreens.ProfileFragment"
+        android:label="Profil" />
+
+    <fragment
         android:id="@+id/onBoarding1Fragment"
         android:name="com.atl.bakuboutiquehub.onboardingscreens.OnBoarding1Fragment"
         android:label="fragment_on_boarding1"
-        tools:layout="@layout/fragment_on_boarding1" >
+        tools:layout="@layout/fragment_on_boarding1">
         <action
             android:id="@+id/action_onBoarding1Fragment_to_onBoarding2Fragment"
             app:destination="@id/onBoarding2Fragment" />
@@ -17,62 +45,64 @@
             android:id="@+id/action_onBoarding1Fragment_to_onBoarding3Fragment"
             app:destination="@id/onBoarding3Fragment" />
     </fragment>
+
     <fragment
         android:id="@+id/onBoarding2Fragment"
         android:name="com.atl.bakuboutiquehub.onboardingscreens.OnBoarding2Fragment"
         android:label="fragment_on_boarding2"
-        tools:layout="@layout/fragment_on_boarding2" >
+        tools:layout="@layout/fragment_on_boarding2">
         <action
             android:id="@+id/action_onBoarding2Fragment_to_onBoarding3Fragment"
             app:destination="@id/onBoarding3Fragment" />
     </fragment>
+
     <fragment
         android:id="@+id/onBoarding3Fragment"
         android:name="com.atl.bakuboutiquehub.onboardingscreens.OnBoarding3Fragment"
         android:label="fragment_on_boarding3"
-        tools:layout="@layout/fragment_on_boarding3" >
+        tools:layout="@layout/fragment_on_boarding3">
         <action
-            android:id="@+id/action_onBoarding3Fragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_onBoarding3Fragment_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_onBoarding3Fragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_onBoarding3Fragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.atl.bakuboutiquehub.homescreens.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.atl.bakuboutiquehub.loginandregister.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_loginFragment_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
     </fragment>
+
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.atl.bakuboutiquehub.loginandregister.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
-            android:id="@+id/action_signUpFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_signUpFragment_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -80,34 +110,40 @@
             android:id="@+id/action_signUpFragment_to_boutiqueorUserFragment2"
             app:destination="@id/boutiqueorUserFragment2" />
     </fragment>
+
     <fragment
         android:id="@+id/boutiqueorUserFragment2"
         android:name="com.atl.bakuboutiquehub.loginandregister.BoutiqueorUserFragment"
-        android:label="BoutiqueorUserFragment" >
+        android:label="BoutiqueorUserFragment">
         <action
             android:id="@+id/action_boutiqueorUserFragment2_to_customerInfoFragment"
             app:destination="@id/customerInfoFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/customerInfoFragment"
         android:name="com.atl.bakuboutiquehub.loginandregister.CustomerInfoFragment"
-        android:label="CustomerInfoFragment" >
+        android:label="CustomerInfoFragment">
         <action
-            android:id="@+id/action_customerInfoFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_customerInfoFragment_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_customerInfoFragment_to_registerBusinessInfoFragment"
             app:destination="@id/registerBusinessInfoFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/registerBusinessInfoFragment"
         android:name="com.atl.bakuboutiquehub.loginandregister.RegisterBusinessInfoFragment"
         android:label="fragment_register_business_info"
-        tools:layout="@layout/fragment_register_business_info" >
+        tools:layout="@layout/fragment_register_business_info">
         <action
             android:id="@+id/action_registerBusinessInfoFragment_to_registerBusinessInfoItemFragment"
             app:destination="@id/registerBusinessInfoItemFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/registerBusinessInfoItemFragment"
         android:name="com.atl.bakuboutiquehub.loginandregister.RegisterBusinessInfoItemFragment"

@@ -60,31 +60,38 @@ class SignUpFragment : Fragment() {
 
         return when {
             email.isEmpty() -> {
-                binding.emailInputLayout.error = "E-poçt boş ola bilməz"
+                binding.emailInput.error = "E-poçt boş ola bilməz"
+                binding.emailInput.requestFocus()
                 false
             }
             !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                binding.emailInputLayout.error = "Düzgün e-poçt formatı daxil edin"
+                binding.emailInput.error = "Düzgün e-poçt formatı daxil edin"
+                binding.emailInput.requestFocus()
                 false
             }
             phone.isEmpty() -> {
-                binding.phoneInputLayout.error = "Mobil nömrə daxil edin"
+                binding.phoneInput.error = "Mobil nömrə daxil edin"
+                binding.phoneInput.requestFocus()
                 false
             }
             phone.length < 9 -> {
-                binding.phoneInputLayout.error = "Nömrə çox qısadır"
+                binding.phoneInput.error = "Nömrə çox qısadır"
+                binding.phoneInput.requestFocus()
                 false
             }
             password.isEmpty() -> {
-                binding.passwordInputLayout.error = "Parol daxil edin"
+                binding.passwordInput.error = "Parol daxil edin"
+                binding.passwordInput.requestFocus()
                 false
             }
             password.length < 6 -> {
-                binding.passwordInputLayout.error = "Parol minimum 6 simvol olmalıdır"
+                binding.passwordInput.error = "Parol minimum 6 simvol olmalıdır"
+                binding.passwordInput.requestFocus()
                 false
             }
             confirmPassword != password -> {
-                binding.confirmPasswordInputLayout.error = "Parollar eyni deyil"
+                binding.confirmPasswordInput.error = "Parollar eyni deyil"
+                binding.confirmPasswordInput.requestFocus()
                 false
             }
             !binding.termsCheckbox.isChecked -> {
@@ -101,7 +108,6 @@ class SignUpFragment : Fragment() {
         builder.setView(dialogView)
 
         val alertDialog = builder.create()
-
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         dialogView.findViewById<Button>(R.id.btnAccept).setOnClickListener {
@@ -122,24 +128,22 @@ class SignUpFragment : Fragment() {
         val sharedPref = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         sharedPref.edit().putBoolean("isLoggedIn", true).apply()
 
-
         val navOptions = NavOptions.Builder()
             .setPopUpTo(R.id.signUpFragment, true)
             .build()
 
-        val bundle = Bundle()
-        val userEmail = binding.emailInput.text.toString().trim()
-        bundle.putString("user_email", userEmail)
-
+        val bundle = Bundle().apply {
+            putString("user_email", binding.emailInput.text.toString().trim())
+        }
 
         findNavController().navigate(R.id.action_signUpFragment_to_boutiqueorUserFragment2, bundle, navOptions)
     }
 
     private fun clearErrors() {
-        binding.emailInputLayout.error = null
-        binding.phoneInputLayout.error = null
-        binding.passwordInputLayout.error = null
-        binding.confirmPasswordInputLayout.error = null
+        binding.emailInput.error = null
+        binding.phoneInput.error = null
+        binding.passwordInput.error = null
+        binding.confirmPasswordInput.error = null
     }
 
     override fun onDestroyView() {

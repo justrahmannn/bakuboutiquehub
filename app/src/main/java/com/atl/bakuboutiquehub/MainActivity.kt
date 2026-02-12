@@ -11,30 +11,37 @@ import com.atl.bakuboutiquehub.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        // 1. Başlanğıc ekran məntiqini tənzimləyirik
+        setupNavigationLogic(navHostFragment)
+
+        // 2. Bottom Navigation-u NavController-ə bağlayırıq
         binding.bottomnav.setupWithNavController(navController)
 
+        // 3. Hansı ekranlarda BottomNav-ın görünüb-görünməyəcəyini idarə edirik
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment, R.id.boutiqueorUserFragment2,
-                R.id.registerBusinessInfoFragment,
-                R.id.registerBusinessInfoItemFragment,
                 R.id.onBoarding1Fragment,
                 R.id.onBoarding2Fragment,
                 R.id.onBoarding3Fragment,
-                R.id.customerInfoFragment,
-                R.id.signUpFragment -> {
+                R.id.loginFragment,
+                R.id.signUpFragment,
+                R.id.boutiqueorUserFragment2,
+                R.id.registerBusinessInfoFragment,
+                R.id.registerBusinessInfoItemFragment,
+                R.id.customerInfoFragment -> {
                     binding.bottomnav.visibility = View.GONE
                 }
                 else -> {
@@ -42,34 +49,33 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        checkLastDestination()
-
-
     }
 
-    private fun checkLastDestination() {
-        val sharedPref = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment ?: return
+    private fun setupNavigationLogic(navHostFragment: NavHostFragment) {
         val navController = navHostFragment.navController
+        val navGraph = navController.navInflater.inflate(R.navigation.app_nav)
 
-        val isLoggedIn = sharedPref.getBoolean("is_logged_in", false)
+        val appPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val userPrefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
-        if (isLoggedIn) {
-            navController.navigate(R.id.homeFragment)
+        val isFirstTime = appPrefs.getBoolean("is_first_time", true)
+        val isLoggedIn = userPrefs.getBoolean("isLoggedIn", false)
+
+        // Məntiqi ardıcıllıq düzəlişi:
+        val startDestId = when {
+            isFirstTime -> R.id.onBoarding1Fragment
+            isLoggedIn -> R.id.home // Bottom Menu-da verdiyin ID
+            else -> R.id.loginFragment // Giriş etməyibsə Login-ə getsin
         }
+
+        navGraph.setStartDestination(startDestId)
+
+        // Bu sətir çox vacibdir: Backstack-i sıfırlayır və app-i startDestId-dən başladır
+        navController.setGraph(navGraph, null)
     }
 
-    override fun onPause() {
-        super.onPause()
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as? NavHostFragment
-        val currentFragmentId = navHostFragment?.navController?.currentDestination?.id
-
-        if (currentFragmentId != null) {
-            val prefs = getSharedPreferences("app_prefs", MODE_PRIVATE)
-            prefs.edit().putInt("last_fragment_id", currentFragmentId).apply()
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

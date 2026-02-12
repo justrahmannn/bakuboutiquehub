@@ -53,36 +53,56 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/subtitleText" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailInputLayout"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardEmail"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            app:boxBackgroundColor="#FFFFFF"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxStrokeColor="#D0D0D0"
-            app:boxStrokeWidth="1dp"
-            app:startIconDrawable="@drawable/email_icon"
-            app:startIconTint="#B89968"
-            app:hintEnabled="false"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/emailLabel">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailInput"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="E-poçt ünvanı"
-                android:inputType="textEmailAddress"
-                android:padding="16dp"
-                android:textColorHint="#B0B0B0"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/bgIconEmail"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:background="#F8F8F8"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/email_icon"
+                    app:tint="#B89968"
+                    app:layout_constraintTop_toTopOf="@id/bgIconEmail"
+                    app:layout_constraintBottom_toBottomOf="@id/bgIconEmail"
+                    app:layout_constraintStart_toStartOf="@id/bgIconEmail"
+                    app:layout_constraintEnd_toEndOf="@id/bgIconEmail" />
+
+                <EditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:hint="E-poçt ünvanı"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="#2C2C2C"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/bgIconEmail" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/phoneLabel"
@@ -93,38 +113,58 @@
             android:textColor="#2C2C2C"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/emailInputLayout" />
+            app:layout_constraintTop_toBottomOf="@id/cardEmail" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneInputLayout"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardPhone"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            app:boxBackgroundColor="#FFFFFF"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxStrokeColor="#D0D0D0"
-            app:boxStrokeWidth="1dp"
-            app:startIconDrawable="@drawable/phone_icon"
-            app:startIconTint="#B89968"
-            app:hintEnabled="false"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phoneLabel">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phoneInput"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="+994 55 777 55 55"
-                android:inputType="phone"
-                android:padding="16dp"
-                android:textColorHint="#B0B0B0"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/bgIconPhone"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:background="#F8F8F8"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/phone_icon"
+                    app:tint="#B89968"
+                    app:layout_constraintTop_toTopOf="@id/bgIconPhone"
+                    app:layout_constraintBottom_toBottomOf="@id/bgIconPhone"
+                    app:layout_constraintStart_toStartOf="@id/bgIconPhone"
+                    app:layout_constraintEnd_toEndOf="@id/bgIconPhone" />
+
+                <EditText
+                    android:id="@+id/phoneInput"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:hint="+994 55 777 55 55"
+                    android:inputType="phone"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:singleLine="true"
+                    android:textColor="#2C2C2C"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/bgIconPhone" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/passwordLabel"
@@ -135,40 +175,67 @@
             android:textColor="#2C2C2C"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/phoneInputLayout" />
+            app:layout_constraintTop_toBottomOf="@id/cardPhone" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordInputLayout"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardPassword"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            app:boxBackgroundColor="#FFFFFF"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxStrokeColor="#D0D0D0"
-            app:boxStrokeWidth="1dp"
-            app:endIconMode="password_toggle"
-            app:endIconTint="#B89968"
-            app:startIconDrawable="@drawable/lock_icon"
-            app:startIconTint="#B89968"
-            app:hintEnabled="false"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/passwordLabel">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordInput"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Parol"
-                android:inputType="textPassword"
-                android:padding="16dp"
-                android:textColorHint="#B0B0B0"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/bgIconLock"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:background="#F8F8F8"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/lock_icon"
+                    app:tint="#B89968"
+                    app:layout_constraintTop_toTopOf="@id/bgIconLock"
+                    app:layout_constraintBottom_toBottomOf="@id/bgIconLock"
+                    app:layout_constraintStart_toStartOf="@id/bgIconLock"
+                    app:layout_constraintEnd_toEndOf="@id/bgIconLock" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#B89968"
+                    app:boxBackgroundMode="none"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/bgIconLock">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="Parol"
+                        android:inputType="textPassword"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#2C2C2C"
+                        android:textColorHint="#AAAAAA"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/confirmPasswordLabel"
@@ -179,40 +246,67 @@
             android:textColor="#2C2C2C"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
+            app:layout_constraintTop_toBottomOf="@id/cardPassword" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/confirmPasswordInputLayout"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardConfirmPassword"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="8dp"
-            app:boxBackgroundColor="#FFFFFF"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxStrokeColor="#D0D0D0"
-            app:boxStrokeWidth="1dp"
-            app:endIconMode="password_toggle"
-            app:endIconTint="#B89968"
-            app:startIconDrawable="@drawable/lock_icon"
-            app:startIconTint="#B89968"
-            app:hintEnabled="false"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/confirmPasswordLabel">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/confirmPasswordInput"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Parol təsdiqlə"
-                android:inputType="textPassword"
-                android:padding="16dp"
-                android:textColorHint="#B0B0B0"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/bgIconLockConfirm"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:background="#F8F8F8"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/lock_icon"
+                    app:tint="#B89968"
+                    app:layout_constraintTop_toTopOf="@id/bgIconLockConfirm"
+                    app:layout_constraintBottom_toBottomOf="@id/bgIconLockConfirm"
+                    app:layout_constraintStart_toStartOf="@id/bgIconLockConfirm"
+                    app:layout_constraintEnd_toEndOf="@id/bgIconLockConfirm" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="#B89968"
+                    app:boxBackgroundMode="none"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/bgIconLockConfirm">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/confirmPasswordInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="Parol təsdiqlə"
+                        android:inputType="textPassword"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:singleLine="true"
+                        android:textColor="#2C2C2C"
+                        android:textColorHint="#AAAAAA"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
 
         <CheckBox
@@ -226,7 +320,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/confirmPasswordInputLayout" />
+            app:layout_constraintTop_toBottomOf="@id/cardConfirmPassword" />
 
 
         <com.google.android.material.button.MaterialButton

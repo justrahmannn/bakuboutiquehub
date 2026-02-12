@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.atl.bakuboutiquehub.R
-import com.atl.bakuboutiquehub.databinding.FragmentLoginBinding // XML adınıza uyğun binding sinfi
+import com.atl.bakuboutiquehub.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
@@ -36,7 +36,6 @@ class LoginFragment : Fragment() {
         }
 
         binding.signupLink.setOnClickListener {
-
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
     }
@@ -49,8 +48,10 @@ class LoginFragment : Fragment() {
         val email = binding.emailInput.text.toString().trim()
         val password = binding.passwordInput.text.toString().trim()
 
-        binding.emailInputLayout.error = null
-        binding.passwordInputLayout.error = null
+        // TextInputLayout-lar silindiyi üçün inputLayout.error artıq istifadə edilmir
+        // Error-ları təmizləmək üçün EditText.error-u null edirik
+        binding.emailInput.error = null
+        binding.passwordInput.error = null
 
         when {
             email.isEmpty() -> {
@@ -70,21 +71,22 @@ class LoginFragment : Fragment() {
                 binding.passwordInput.requestFocus()
             }
             else -> {
+                // Giriş məlumatlarını yadda saxla
+                val sharedPref = requireActivity().getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+                with(sharedPref.edit()) {
+                    putBoolean("isLoggedIn", true)
+                    putString("user_email", email)
+                    apply()
+                }
+
                 Toast.makeText(requireContext(), "Giriş uğurludur!", Toast.LENGTH_SHORT).show()
 
-                val bundle = Bundle()
-                val userEmail = binding.emailInput.text.toString()
+                val bundle = Bundle().apply {
+                    putString("user_email", email)
+                }
 
-                bundle.putString("user_email", userEmail)
-
-                findNavController().navigate(R.id.action_loginFragment_to_homeFragment, bundle)
+                findNavController().navigate(R.id.action_loginFragment_to_home, bundle)
             }
-        }
-
-        val sharedPref = requireActivity().getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putBoolean("isLoggedIn", true)
-            apply()
         }
     }
 
