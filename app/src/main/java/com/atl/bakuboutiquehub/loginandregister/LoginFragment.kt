@@ -54,19 +54,19 @@ class LoginFragment : Fragment() {
 
         when {
             email.isEmpty() -> {
-                binding.emailInputLayout.error = "E-poçt daxil edin"
+                binding.emailInput.error = "E-poçt daxil edin"
                 binding.emailInput.requestFocus()
             }
             !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
-                binding.emailInputLayout.error = "Düzgün e-poçt formatı daxil edin"
+                binding.emailInput.error = "Düzgün e-poçt formatı daxil edin"
                 binding.emailInput.requestFocus()
             }
             password.isEmpty() -> {
-                binding.passwordInputLayout.error = "Parolu daxil edin"
+                binding.passwordInput.error = "Parolu daxil edin"
                 binding.passwordInput.requestFocus()
             }
             password.length < 6 -> {
-                binding.passwordInputLayout.error = "Parol minimum 6 simvol olmalıdır"
+                binding.passwordInput.error = "Parol minimum 6 simvol olmalıdır"
                 binding.passwordInput.requestFocus()
             }
             else -> {
