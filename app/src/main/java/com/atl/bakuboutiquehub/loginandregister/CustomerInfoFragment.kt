@@ -28,14 +28,12 @@ class CustomerInfoFragment : Fragment() {
 
         val role = arguments?.getString("role")
 
-        // Role "customer" olduqda butiq sahələrini gizlət və düyməni yuxarı çək
         if (role == "customer") {
             binding.tvLabelShopName.visibility = View.GONE
             binding.cardShopName.visibility = View.GONE
             binding.tvLabelVerification.visibility = View.GONE
             binding.cardVerificationCode.visibility = View.GONE
 
-            // Düymənin constraint-ini dəyişərək İstifadəçi adı sahəsinin altına bağlayırıq
             val params = binding.btnNext.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
             params.topToBottom = binding.cardUsername.id
             binding.btnNext.layoutParams = params
@@ -51,7 +49,6 @@ class CustomerInfoFragment : Fragment() {
         val surname = binding.etSurname.text.toString().trim()
         val username = binding.etUsername.text.toString().trim()
 
-        // Hər dəfə yoxlamadan əvvəl error-ları təmizləyirik
         clearErrors()
 
         when {
@@ -85,7 +82,6 @@ class CustomerInfoFragment : Fragment() {
             putString("user_nickname", username)
         }
 
-        // Qeyd: action ID-nin nav_graph-da düzgün olduğundan əmin ol
         findNavController().navigate(
             R.id.action_customerInfoFragment_to_home, bundle
         )

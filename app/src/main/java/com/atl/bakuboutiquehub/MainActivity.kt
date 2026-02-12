@@ -24,13 +24,10 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // 1. Başlanğıc ekran məntiqini tənzimləyirik
         setupNavigationLogic(navHostFragment)
 
-        // 2. Bottom Navigation-u NavController-ə bağlayırıq
         binding.bottomnav.setupWithNavController(navController)
 
-        // 3. Hansı ekranlarda BottomNav-ın görünüb-görünməyəcəyini idarə edirik
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.onBoarding1Fragment,
@@ -61,16 +58,14 @@ class MainActivity : AppCompatActivity() {
         val isFirstTime = appPrefs.getBoolean("is_first_time", true)
         val isLoggedIn = userPrefs.getBoolean("isLoggedIn", false)
 
-        // Məntiqi ardıcıllıq düzəlişi:
         val startDestId = when {
             isFirstTime -> R.id.onBoarding1Fragment
-            isLoggedIn -> R.id.home // Bottom Menu-da verdiyin ID
-            else -> R.id.loginFragment // Giriş etməyibsə Login-ə getsin
+            isLoggedIn -> R.id.home
+            else -> R.id.loginFragment
         }
 
         navGraph.setStartDestination(startDestId)
 
-        // Bu sətir çox vacibdir: Backstack-i sıfırlayır və app-i startDestId-dən başladır
         navController.setGraph(navGraph, null)
     }
 

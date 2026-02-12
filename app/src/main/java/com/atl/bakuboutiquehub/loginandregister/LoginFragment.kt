@@ -48,8 +48,6 @@ class LoginFragment : Fragment() {
         val email = binding.emailInput.text.toString().trim()
         val password = binding.passwordInput.text.toString().trim()
 
-        // TextInputLayout-lar silindiyi üçün inputLayout.error artıq istifadə edilmir
-        // Error-ları təmizləmək üçün EditText.error-u null edirik
         binding.emailInput.error = null
         binding.passwordInput.error = null
 
@@ -71,7 +69,6 @@ class LoginFragment : Fragment() {
                 binding.passwordInput.requestFocus()
             }
             else -> {
-                // Giriş məlumatlarını yadda saxla
                 val sharedPref = requireActivity().getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
                 with(sharedPref.edit()) {
                     putBoolean("isLoggedIn", true)

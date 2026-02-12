@@ -30,14 +30,13 @@ class HomeFragment : Fragment() {
         val sharedPref = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val isLoggedIn = sharedPref.getBoolean("isLoggedIn", false)
 
-        // Hər iki halda geri düyməsini idarə edirik ki, onboarding-ə qayıtmasın
         handleBackPress()
 
         if (isLoggedIn) {
             setupLoggedInUI()
 
             binding.xosgelmisiniz.visibility = View.VISIBLE
-            // Login-dən gələn adı göstərmək üçün (əgər göndərilirsə)
+
             val name = arguments?.getString("user_nickname")
             binding.ad.text = name ?: "İstifadəçi"
             binding.ad.visibility = View.VISIBLE
@@ -45,12 +44,10 @@ class HomeFragment : Fragment() {
             setupLoggedOutUI()
         }
 
-        // Qeydiyyat düyməsi - Yeni ID-yə görə düzəldildi
         binding.signupbutton.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_signUpFragment)
         }
 
-        // Giriş düyməsi - Yeni ID-yə görə düzəldildi
         binding.loginbutton.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_loginFragment)
         }
@@ -67,13 +64,11 @@ class HomeFragment : Fragment() {
         binding.buttonsContainer.visibility = View.VISIBLE
         binding.dividerLine.visibility = View.VISIBLE
 
-        // Giriş etməyibsə xoş gəlmisiniz hissəsini gizlət
         binding.xosgelmisiniz.visibility = View.GONE
         binding.ad.visibility = View.GONE
     }
 
     private fun handleBackPress() {
-        // Bu kod Home-da olanda geri düyməsinə basıldıqda tətbiqi bağlayır
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             requireActivity().finish()
         }

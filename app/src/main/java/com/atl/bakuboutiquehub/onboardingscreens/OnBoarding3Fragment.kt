@@ -27,10 +27,9 @@ class OnBoarding3Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Backstack-i təmizləmək üçün NavOptions yaradırıq.
-        // Bu, keçid etdiyimiz zaman arxadakı bütün fragmentləri silir.
+
         val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.app_nav, true) // app_nav (və ya nav_graph) ID-sini daxil edin
+            .setPopUpTo(R.id.app_nav, true)
             .build()
 
         binding.startButton.setOnClickListener {
@@ -62,7 +61,6 @@ class OnBoarding3Fragment : Fragment() {
     }
 
     private fun saveOnboardingCompleted() {
-        // MainActivity-də yoxladığın SharedPreferences adı ilə eyni olduğundan əmin ol
         val prefs = requireActivity().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         prefs.edit().putBoolean("is_first_time", false).apply()
     }
