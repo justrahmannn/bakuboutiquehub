@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         checkLastDestination()
+
+
     }
 
     private fun checkLastDestination() {
