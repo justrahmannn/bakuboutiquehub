@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.atl.bakuboutiquehub.homescreens.HomeFragment"
+        android:name="com.atl.bakuboutiquehub.homescreens.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -30,8 +30,12 @@
 
     <fragment
         android:id="@+id/profile"
-        android:name="com.atl.bakuboutiquehub.homescreens.ProfileFragment"
-        android:label="Profil" />
+        android:name="com.atl.bakuboutiquehub.homescreens.profile.ProfileFragment"
+        android:label="Profil" >
+        <action
+            android:id="@+id/action_profile_to_profileSettingsFragment"
+            app:destination="@id/profileSettingsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/onBoarding1Fragment"
@@ -149,4 +153,8 @@
         android:name="com.atl.bakuboutiquehub.loginandregister.RegisterBusinessInfoItemFragment"
         android:label="fragment_register_business_info_item"
         tools:layout="@layout/fragment_register_business_info_item" />
+    <fragment
+        android:id="@+id/profileSettingsFragment"
+        android:name="com.atl.bakuboutiquehub.homescreens.profile.ProfileSettingsFragment"
+        android:label="ProfileSettingsFragment" />
 </navigation>
