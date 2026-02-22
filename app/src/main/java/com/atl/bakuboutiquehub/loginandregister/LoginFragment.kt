@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.atl.bakuboutiquehub.R
-import com.atl.bakuboutiquehub.databinding.FragmentLoginBinding
+import androidx.lifecycle.lifecycleScope
+import com.atl.bakuboutiquehub.network.RetrofitClient
+import com.atl.bakuboutiquehub.network.model.LoginRequest
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -69,20 +71,41 @@ class LoginFragment : Fragment() {
                 binding.passwordInput.requestFocus()
             }
             else -> {
-                val sharedPref = requireActivity().getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
-                with(sharedPref.edit()) {
-                    putBoolean("isLoggedIn", true)
-                    putString("user_email", email)
-                    apply()
+                val loginRequest = LoginRequest(email, password)
+
+                lifecycleScope.launch {
+                    try {
+                        binding.loginButton.isEnabled = false
+                        val response = RetrofitClient.authService.login(loginRequest)
+
+                        if (response.isSuccessful) {
+                            val authResponse = response.body()
+                            val token = authResponse?.token
+
+                            val sharedPref = requireActivity().getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
+                            with(sharedPref.edit()) {
+                                putBoolean("isLoggedIn", true)
+                                putString("user_email", email)
+                                putString("auth_token", token)
+                                apply()
+                            }
+
+                            Toast.makeText(requireContext(), "Giriş uğurludur!", Toast.LENGTH_SHORT).show()
+
+                            val bundle = Bundle().apply {
+                                putString("user_email", email)
+                            }
+                            findNavController().navigate(R.id.action_loginFragment_to_home, bundle)
+                        } else {
+                            val errorMsg = response.errorBody()?.string() ?: "Giriş uğursuzdur"
+                            Toast.makeText(requireContext(), "Xəta: $errorMsg", Toast.LENGTH_LONG).show()
+                            binding.loginButton.isEnabled = true
+                        }
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "Bağlantı xətası: ${e.message}", Toast.LENGTH_LONG).show()
+                        binding.loginButton.isEnabled = true
+                    }
                 }
-
-                Toast.makeText(requireContext(), "Giriş uğurludur!", Toast.LENGTH_SHORT).show()
-
-                val bundle = Bundle().apply {
-                    putString("user_email", email)
-                }
-
-                findNavController().navigate(R.id.action_loginFragment_to_home, bundle)
             }
         }
     }
