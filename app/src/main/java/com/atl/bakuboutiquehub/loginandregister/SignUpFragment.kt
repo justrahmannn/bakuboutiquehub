@@ -12,8 +12,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.atl.bakuboutiquehub.R
-import com.atl.bakuboutiquehub.databinding.FragmentSignUpBinding
+import androidx.lifecycle.lifecycleScope
+import com.atl.bakuboutiquehub.network.RetrofitClient
+import com.atl.bakuboutiquehub.network.model.SignupRequest
+import kotlinx.coroutines.launch
 
 class SignUpFragment : Fragment() {
 
@@ -125,18 +127,48 @@ class SignUpFragment : Fragment() {
     }
 
     private fun completeRegistration() {
-        val sharedPref = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
-        sharedPref.edit().putBoolean("isLoggedIn", true).apply()
+        val email = binding.emailInput.text.toString().trim()
+        val phone = binding.phoneInput.text.toString().trim()
+        val password = binding.passwordInput.text.toString().trim()
+        val fullName = email.substringBefore("@") // Placeholder for full name if not in UI
 
-        val navOptions = NavOptions.Builder()
-            .setPopUpTo(R.id.signUpFragment, true)
-            .build()
+        val signupRequest = SignupRequest(
+            email = email,
+            password = password,
+            fullName = fullName,
+            phoneNumber = phone
+        )
 
-        val bundle = Bundle().apply {
-            putString("user_email", binding.emailInput.text.toString().trim())
+        lifecycleScope.launch {
+            try {
+                binding.nextButton.isEnabled = false
+                val response = RetrofitClient.authService.register(signupRequest)
+
+                if (response.isSuccessful) {
+                    Toast.makeText(requireContext(), "Qeydiyyat uğurla tamamlandı!", Toast.LENGTH_SHORT).show()
+                    
+                    val sharedPref = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+                    sharedPref.edit().putBoolean("isLoggedIn", true).apply()
+
+                    val navOptions = NavOptions.Builder()
+                        .setPopUpTo(R.id.signUpFragment, true)
+                        .build()
+
+                    val bundle = Bundle().apply {
+                        putString("user_email", email)
+                    }
+
+                    findNavController().navigate(R.id.action_signUpFragment_to_boutiqueorUserFragment2, bundle, navOptions)
+                } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Xəta baş verdi"
+                    Toast.makeText(requireContext(), "Xəta: $errorMsg", Toast.LENGTH_LONG).show()
+                    binding.nextButton.isEnabled = true
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Bağlantı xətası: ${e.message}", Toast.LENGTH_LONG).show()
+                binding.nextButton.isEnabled = true
+            }
         }
-
-        findNavController().navigate(R.id.action_signUpFragment_to_boutiqueorUserFragment2, bundle, navOptions)
     }
 
     private fun clearErrors() {
