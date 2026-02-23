@@ -7,8 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    // 10.0.2.2 is the special IP to access your computer's localhost from Android Emulator
-    private const val BASE_URL = "http://10.0.2.2:8080/"
+    // 192.168.53.98 is your computer's local IP for physical device testing
+    private const val BASE_URL = "http://192.168.53.98:8080/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
