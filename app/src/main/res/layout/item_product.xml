@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="200dp"
+    android:layout_width="170dp"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="30dp"
@@ -14,19 +14,36 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="0dp">
+            android:layout_height="200dp">
 
-            <ImageView
-                android:id="@+id/ivProduct"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/suggestion_pics" />
-        </com.google.android.material.card.MaterialCardView>
+                app:cardCornerRadius="25dp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/ivProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/suggestion_pics" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageButton
+                android:id="@+id/btnSave"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="end|top"
+                android:layout_margin="12dp"
+                android:background="@drawable/bg_circle_save"
+                android:src="@drawable/unsaved"
+                android:padding="8dp"
+                android:scaleType="fitCenter"
+                app:tint="#1A1A1A" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -26,10 +26,12 @@ class HomeFragment : Fragment() {
 
     private val sliderHandler = Handler(Looper.getMainLooper())
     private val sliderRunnable = Runnable {
-        val count = binding.bannerViewPager.adapter?.itemCount ?: 0
-        if (count > 0) {
-            val nextItem = (binding.bannerViewPager.currentItem + 1) % count
-            binding.bannerViewPager.currentItem = nextItem
+        _binding?.let {
+            val count = it.bannerViewPager.adapter?.itemCount ?: 0
+            if (count > 0) {
+                val nextItem = (it.bannerViewPager.currentItem + 1) % count
+                it.bannerViewPager.currentItem = nextItem
+            }
         }
     }
 
@@ -52,6 +54,9 @@ class HomeFragment : Fragment() {
         setupCategories()
         setUpNewIn()
         setUpTrending()
+        clicksMore()
+
+
 
         if (isLoggedIn) {
             setupLoggedInUI()
@@ -70,7 +75,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setUpNewIn(){
+    private fun setUpNewIn() {
         val products = listOf(
             Product("Wedding dress", "$69.4", "45", "245", R.drawable.suggestion_pics),
             Product("Evening Gown", "$85.0", "12", "110", R.drawable.suggestion_pics),
@@ -79,42 +84,40 @@ class HomeFragment : Fragment() {
             Product("Silk Gala Gown", "$150.0", "3", "320", R.drawable.suggestion_pics)
         )
         binding.rvNewIn.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvNewIn.adapter = ProductAdapter(products)
+
+        // showSaveButton = false olaraq ötürülür
+        binding.rvNewIn.adapter = ProductAdapter(products,   false) { product ->
+            // Məhsula kliklədikdə ProductInfo-ya keçid (əgər lazımdırsa)
+        }
     }
 
-    private fun setUpTrending(){
+    private fun setUpTrending() {
         val trendingProducts = listOf(
             Product("Silk Gala Gown", "$150.0", "3", "320", R.drawable.suggestion_pics),
             Product("Business Blazer", "$120.0", "5", "56", R.drawable.suggestion_pics),
             Product("Classic Stiletto", "$89.9", "10", "430", R.drawable.suggestion_pics),
             Product("Luxury Handbag", "$210.0", "2", "15", R.drawable.suggestion_pics)
         )
+        binding.rvTrending.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        val trendingAdapter = ProductAdapter(trendingProducts)
-        binding.rvTrending.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = trendingAdapter
+        // showSaveButton = false olaraq ötürülür
+        binding.rvTrending.adapter = ProductAdapter(trendingProducts,   false) { product ->
+            // Məhsula kliklədikdə ProductInfo-ya keçid
         }
     }
-
     private fun setupCategories() {
-        // 1. Data siyahısı (Şəkilləri öz drawable adlarınla dəyiş)
         val categoryList = listOf(
             Category(1, "Gala", "312 Collections", R.drawable._gala),
             Category(2, "Wedding", "231 Collections", R.drawable.wedding),
             Category(3, "Party", "65 Collections", R.drawable.party),
             Category(4, "Business", "20 Collections", R.drawable._business)
         )
-
-        // 2. Adapteri qoşuruq
         val categoryAdapter = CategoryAdapter(categoryList)
-
-        // 3. RecyclerView tənzimləmələri
         binding.rvCategories.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2) // 2 sütunlu grid
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = categoryAdapter
             setHasFixedSize(true)
-            isNestedScrollingEnabled = false // NestedScrollView daxilində hamar işləməsi üçün
+            isNestedScrollingEnabled = false
         }
     }
 
@@ -129,10 +132,8 @@ class HomeFragment : Fragment() {
             val r = 1 - Math.abs(position)
             page.scaleY = 0.85f + r * 0.15f
         }
-
         binding.bannerViewPager.setPageTransformer(compositePageTransformer)
         binding.bannerViewPager.offscreenPageLimit = 3
-
         TabLayoutMediator(binding.bannerIndicator, binding.bannerViewPager) { _, _ -> }.attach()
         startAutoSlider()
     }
@@ -140,18 +141,31 @@ class HomeFragment : Fragment() {
     private fun startAutoSlider() {
         sliderHandler.removeCallbacks(sliderRunnable)
         sliderHandler.postDelayed(sliderRunnable, 3000)
+    }
 
-        binding.bannerViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                sliderHandler.removeCallbacks(sliderRunnable)
-                sliderHandler.postDelayed(sliderRunnable, 3000)
+    private fun clicksMore() {
+        // NEW IN üçün keçid
+        binding.moreNewIn.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category_type", "NEW_IN")
+                putString("screen_title", "Yeni Gələnlər")
             }
-        })
+            findNavController().navigate(R.id.action_home_to_moreNewInFragment, bundle)
+        }
+
+        // TRENDING üçün keçid
+        binding.moreTrend.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("category_type", "TRENDING")
+                putString("screen_title", "Trenddə Olanlar")
+            }
+            findNavController().navigate(R.id.action_home_to_moreNewInFragment, bundle)
+        }
     }
 
     private fun setupLoggedInUI() {
         binding.buttonsContainer.visibility = View.GONE
-        binding.dividerLine.visibility = View.GONE // Əlavə etdiyimiz barrier-li xətt
+        binding.dividerLine.visibility = View.GONE
         binding.xosgelmisiniz.visibility = View.VISIBLE
         binding.ad.visibility = View.VISIBLE
     }
@@ -163,26 +177,10 @@ class HomeFragment : Fragment() {
         binding.ad.visibility = View.GONE
     }
 
-    private fun clicksMore(){
-        binding.moreNewIn.setOnClickListener {
-
-        }
-    }
-
     private fun handleBackPress() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             requireActivity().finish()
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        sliderHandler.removeCallbacks(sliderRunnable)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        sliderHandler.postDelayed(sliderRunnable, 3000)
     }
 
     override fun onDestroyView() {

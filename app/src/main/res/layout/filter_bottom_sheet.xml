@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="32dp">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_filter"
+            android:contentDescription="Filter"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Sırala"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A1A"/>
+
+    </LinearLayout>
+
+    <!-- DIVIDER -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- ADA GÖRƏ -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ada görə"
+        android:textSize="14sp"
+        android:textColor="#1A1A1A"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <!-- A → Z -->
+        <Button
+            android:id="@+id/btnAtoZ"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="A → Z"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1A1A1A"
+            style="@style/Widget.MaterialComponents.Button"
+            app:cornerRadius="12dp"/>
+
+        <!-- Z → A -->
+        <Button
+            android:id="@+id/btnZtoA"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Z → A"
+            android:textSize="14sp"
+            android:textColor="#1A1A1A"
+            android:backgroundTint="#FFFFFF"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="#DDDDDD"
+            app:strokeWidth="1dp"
+            app:cornerRadius="12dp"/>
+
+    </LinearLayout>
+
+    <!-- QIYMƏTƏ GÖRƏ -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qiymətə görə"
+        android:textSize="14sp"
+        android:textColor="#1A1A1A"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <!-- Azdan coxa -->
+        <Button
+            android:id="@+id/btnPriceLowHigh"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Azdan coxa"
+            android:textSize="13sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1A1A1A"
+            style="@style/Widget.MaterialComponents.Button"
+            app:cornerRadius="12dp"/>
+
+        <!-- Çoxdan aza -->
+        <Button
+            android:id="@+id/btnPriceHighLow"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Çoxdan aza"
+            android:textSize="13sp"
+            android:textColor="#1A1A1A"
+            android:backgroundTint="#FFFFFF"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="#DDDDDD"
+            app:strokeWidth="1dp"
+            app:cornerRadius="12dp"/>
+
+    </LinearLayout>
+
+    <!-- QİYMƏT ARALIĞI -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qiymət aralığı"
+        android:textSize="14sp"
+        android:textColor="#1A1A1A"
+        android:layout_marginBottom="6dp"/>
+
+    <!-- Min / Max labels -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:id="@+id/tvRangeMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="10 AZN"
+            android:textSize="12sp"
+            android:textColor="#AAAAAA"/>
+
+        <TextView
+            android:id="@+id/tvRangeMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="200 AZN"
+            android:textSize="12sp"
+            android:textColor="#AAAAAA"/>
+
+    </RelativeLayout>
+
+    <!-- RANGE SLIDER -->
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/rangeSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:valueFrom="10"
+        android:valueTo="200"
+        app:values="@array/slider_default_values"
+        app:thumbColor="#1A1A1A"
+        app:thumbRadius="10dp"
+        app:trackColorActive="#1A1A1A"
+        app:trackColorInactive="#E0E0E0"
+        app:trackHeight="3dp"
+        app:haloColor="@android:color/transparent"
+        app:labelBehavior="gone"/>
+
+    <!-- Min / Max input boxes -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="28dp">
+
+        <!-- Min input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeColor="#DDDDDD"
+            app:boxStrokeWidth="1dp"
+            app:boxBackgroundColor="#FFFFFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMinPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textColor="#1A1A1A"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:background="@null"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Arrow -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="→"
+            android:textSize="16sp"
+            android:textColor="#AAAAAA"/>
+
+        <!-- Max input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp"
+            app:boxStrokeColor="#DDDDDD"
+            app:boxStrokeWidth="1dp"
+            app:boxBackgroundColor="#FFFFFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMaxPrice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="13sp"
+                android:textColor="#1A1A1A"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:background="@null"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <!-- SIFIRLA / TƏTBİQ ET -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Sıfırla -->
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Sıfırla"
+            android:textSize="15sp"
+            android:textColor="#1A1A1A"
+            android:backgroundTint="#FFFFFF"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="#DDDDDD"
+            app:strokeWidth="1dp"
+            app:cornerRadius="14dp"/>
+
+        <!-- Tətbiq et -->
+        <Button
+            android:id="@+id/btnApply"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Tətbiq et"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1A1A1A"
+            style="@style/Widget.MaterialComponents.Button"
+            app:cornerRadius="14dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

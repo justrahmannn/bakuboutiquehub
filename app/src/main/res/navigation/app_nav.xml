@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_home_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_home_to_moreNewInFragment"
+            app:destination="@id/moreNewInFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +38,12 @@
         <action
             android:id="@+id/action_profile_to_profileSettingsFragment"
             app:destination="@id/profileSettingsFragment" />
+        <action
+            android:id="@+id/action_profile_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_profile_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -157,4 +166,18 @@
         android:id="@+id/profileSettingsFragment"
         android:name="com.atl.bakuboutiquehub.homescreens.profile.ProfileSettingsFragment"
         android:label="ProfileSettingsFragment" />
+    <fragment
+        android:id="@+id/moreNewInFragment"
+        android:name="com.atl.bakuboutiquehub.homescreens.home.MoreNewInFragment"
+        android:label="fragment_more_new_in"
+        tools:layout="@layout/fragment_more_new_in" >
+        <action
+            android:id="@+id/action_moreNewInFragment_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productInfoFragment"
+        android:name="com.atl.bakuboutiquehub.homescreens.home.ProductInfoFragment"
+        android:label="fragment_product_info"
+        tools:layout="@layout/fragment_product_info" />
 </navigation>

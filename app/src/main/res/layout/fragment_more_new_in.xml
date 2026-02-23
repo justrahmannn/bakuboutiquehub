@@ -1,14 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homescreens.home.MoreNewInFragment">
+    android:orientation="vertical"
+    android:background="#FAF8F5">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- TOP BAR -->
+    <RelativeLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="56dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/arrow_back"
+            android:background="@null"
+            android:contentDescription="Geri"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Məhsullar"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A1A"/>
+
+    </RelativeLayout>
+
+    <!-- SEARCH + FILTER ROW -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        android:gravity="center_vertical">
+
+        <!-- Search Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="30dp"
+            app:boxCornerRadiusTopEnd="30dp"
+            app:boxCornerRadiusBottomStart="30dp"
+            app:boxCornerRadiusBottomEnd="30dp"
+            app:boxStrokeColor="#E0E0E0"
+            app:boxBackgroundColor="#FFFFFF"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/search_icon"
+            app:endIconTint="#999999">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Yeni dəblər axtarın"
+                android:textSize="13sp"
+                android:textColorHint="#AAAAAA"
+                android:inputType="text"
+                android:background="@null"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Filter Button -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnFilter"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:cardCornerRadius="14dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_filter"
+                android:contentDescription="Filter"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!-- NEW IN HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/newInOrTrending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New in"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A1A"/>
+
+        <TextView
+            android:id="@+id/tvProductCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="239 Products"
+            android:textSize="12sp"
+            android:textColor="#AAAAAA"
+            android:layout_marginTop="2dp"/>
+
+    </LinearLayout>
+
+    <!-- PRODUCTS RECYCLERVIEW -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_product"
+        tools:itemCount="6"
+        tools:spanCount="2"/>
+
+</LinearLayout>

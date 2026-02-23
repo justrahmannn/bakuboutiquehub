@@ -24,6 +24,7 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build()
+
             .create(AuthApiService::class.java)
     }
 }

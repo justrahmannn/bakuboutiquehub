@@ -28,8 +28,11 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.profileSettings.setOnClickListener{
-            findNavController().navigate(R.id.action_profile_to_profileSettingsFragment)
+        binding.layoutUnauth.btnLoginTrigger.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_to_loginFragment)
+        }
+        binding.layoutUnauth.tvSignupLink.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_to_signUpFragment)
         }
 
     }

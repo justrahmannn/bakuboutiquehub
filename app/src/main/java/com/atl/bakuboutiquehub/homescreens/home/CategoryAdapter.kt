@@ -22,6 +22,7 @@ class CategoryAdapter(private val list: List<Category>) :
             tvCategoryName.text = item.name
             tvCollectionCount.text = item.count
             ivCategory.setImageResource(item.imageRes)
+
         }
     }
 

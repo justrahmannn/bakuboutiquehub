@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
+import com.atl.bakuboutiquehub.R
+import com.atl.bakuboutiquehub.databinding.FragmentSignUpBinding
 import com.atl.bakuboutiquehub.network.RetrofitClient
 import com.atl.bakuboutiquehub.network.model.SignupRequest
 import kotlinx.coroutines.launch

@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
+                R.id.productInfoFragment,
+                R.id.moreNewInFragment,
                 R.id.onBoarding1Fragment,
                 R.id.onBoarding2Fragment,
                 R.id.onBoarding3Fragment,
@@ -53,19 +55,17 @@ class MainActivity : AppCompatActivity() {
         val navGraph = navController.navInflater.inflate(R.navigation.app_nav)
 
         val appPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-        val userPrefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
         val isFirstTime = appPrefs.getBoolean("is_first_time", true)
-        val isLoggedIn = userPrefs.getBoolean("isLoggedIn", false)
 
-        val startDestId = when {
-            isFirstTime -> R.id.onBoarding1Fragment
-            isLoggedIn -> R.id.home
-            else -> R.id.loginFragment
+        // Login olub-olmamasına baxmadan, Onboarding keçilibsə Home-a göndər
+        val startDestId = if (isFirstTime) {
+            R.id.onBoarding1Fragment
+        } else {
+            R.id.home // Artıq həmişə Home-dan başlayacaq
         }
 
         navGraph.setStartDestination(startDestId)
-
         navController.setGraph(navGraph, null)
     }
 
