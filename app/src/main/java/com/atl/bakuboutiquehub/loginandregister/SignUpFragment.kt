@@ -18,6 +18,7 @@ import com.atl.bakuboutiquehub.databinding.FragmentSignUpBinding
 import com.atl.bakuboutiquehub.network.RetrofitClient
 import com.atl.bakuboutiquehub.network.model.SignupRequest
 import kotlinx.coroutines.launch
+import androidx.core.content.edit
 
 class SignUpFragment : Fragment() {
 
@@ -132,7 +133,7 @@ class SignUpFragment : Fragment() {
         val email = binding.emailInput.text.toString().trim()
         val phone = binding.phoneInput.text.toString().trim()
         val password = binding.passwordInput.text.toString().trim()
-        val fullName = email.substringBefore("@") // Placeholder for full name if not in UI
+        val fullName = email.substringBefore("@")
 
         val signupRequest = SignupRequest(
             email = email,
@@ -150,7 +151,7 @@ class SignUpFragment : Fragment() {
                     Toast.makeText(requireContext(), "Qeydiyyat uğurla tamamlandı!", Toast.LENGTH_SHORT).show()
                     
                     val sharedPref = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
-                    sharedPref.edit().putBoolean("isLoggedIn", true).apply()
+                    sharedPref.edit { putBoolean("isLoggedIn", true) }
 
                     val navOptions = NavOptions.Builder()
                         .setPopUpTo(R.id.signUpFragment, true)
