@@ -29,6 +29,18 @@ public class Boutique {
 
     private String contactNumber;
 
+    private String workingHours;
+
+    @ElementCollection
+    @CollectionTable(name = "boutique_categories", joinColumns = @JoinColumn(name = "boutique_id"))
+    @Column(name = "category")
+    private List<String> categories;
+
+    @ElementCollection
+    @CollectionTable(name = "boutique_brands", joinColumns = @JoinColumn(name = "boutique_id"))
+    @Column(name = "brand")
+    private List<String> brands;
+
     @OneToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private User owner;

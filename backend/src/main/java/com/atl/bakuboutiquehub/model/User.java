@@ -29,6 +29,9 @@ public class User {
     private String phoneNumber;
 
     private String fullName;
+    private String gender;
+    private Integer age;
+    private String referralSource;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))

@@ -36,6 +36,9 @@ public class BoutiqueService {
                 .description(dto.getDescription())
                 .address(dto.getAddress())
                 .contactNumber(dto.getContactNumber())
+                .workingHours(dto.getWorkingHours())
+                .categories(dto.getCategories())
+                .brands(dto.getBrands())
                 .owner(owner)
                 .build();
 
@@ -82,6 +85,9 @@ public class BoutiqueService {
                 .description(boutique.getDescription())
                 .address(boutique.getAddress())
                 .contactNumber(boutique.getContactNumber())
+                .workingHours(boutique.getWorkingHours())
+                .categories(boutique.getCategories())
+                .brands(boutique.getBrands())
                 .ownerId(boutique.getOwner().getId())
                 .build();
     }

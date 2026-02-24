@@ -71,6 +71,9 @@ public class AuthController {
                 .password(encoder.encode(signUpRequest.getPassword()))
                 .fullName(signUpRequest.getFullName())
                 .phoneNumber(signUpRequest.getPhoneNumber())
+                .gender(signUpRequest.getGender())
+                .age(signUpRequest.getAge())
+                .referralSource(signUpRequest.getReferralSource())
                 .build();
 
         Set<String> strRoles = signUpRequest.getRoles();

@@ -9,5 +9,8 @@ public class SignupRequest {
     private String password;
     private String phoneNumber;
     private String fullName;
+    private String gender;
+    private Integer age;
+    private String referralSource;
     private Set<String> roles;
 }
