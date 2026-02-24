@@ -1,60 +1,69 @@
 package com.atl.bakuboutiquehub.homescreens.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.atl.bakuboutiquehub.R
+import androidx.navigation.fragment.findNavController
+import com.atl.bakuboutiquehub.databinding.FragmentProductInfoBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProductInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProductInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentProductInfoBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_info, container, false)
+    ): View {
+        _binding = FragmentProductInfoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // 1. Məlumatları Bundle-dan alırıq (MoreNewInFragment-dən göndərilən key-lər)
+        val name = arguments?.getString("p_name")
+        val price = arguments?.getString("p_price")
+        val rating = arguments?.getString("p_rating")
+        val reviews = arguments?.getString("p_reviews")
+        val imageRes = arguments?.getInt("p_image") ?: 0
+
+        // 2. Məlumatları XML ID-lərinə uyğun olaraq yerləşdiririk
+        binding.apply {
+            tvProductName.text = name
+            tvPrice.text = price // XML-də id: tvPrice
+            // RatingBar-ı da yeniləyək
+            ratingBar.rating = rating?.toFloatOrNull() ?: 0f
+
+            // Şəkli Hero Image hissəsinə qoyuruq
+            if (imageRes != 0) {
+                ivProductHero.setImageResource(imageRes) // XML-də id: ivProductHero
             }
+        }
+
+        // 3. Geri düyməsi (XML-də id: btnBack)
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        // 4. Zəng funksiyası
+        binding.tvCallLink.setOnClickListener {
+            val phoneNumber = binding.tvPhone.text.toString()
+            if (phoneNumber.isNotEmpty()) {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:$phoneNumber")
+                startActivity(intent)
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

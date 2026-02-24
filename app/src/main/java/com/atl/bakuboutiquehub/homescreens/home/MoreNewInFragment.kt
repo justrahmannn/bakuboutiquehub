@@ -84,9 +84,17 @@ class MoreNewInFragment : Fragment() {
     private fun updateAdapter(list: List<Product>) {
         binding.tvProductCount.text = "${list.size} Products"
 
-        // Burada parametri true edirik ki, Save düyməsi görünsün
-        val productAdapter = ProductAdapter(list,   true) {
-            findNavController().navigate(R.id.action_moreNewInFragment_to_productInfoFragment)
+        val productAdapter = ProductAdapter(list, true) { selectedProduct ->
+            // Kliklənən məhsulun məlumatlarını Bundle-a qoyuruq
+            val bundle = Bundle().apply {
+                putString("p_name", selectedProduct.name)
+                putString("p_price", selectedProduct.price)
+                putString("p_stock", selectedProduct.stock)
+                putString("p_reviews", selectedProduct.reviews)
+                putInt("p_image", selectedProduct.imageRes)
+            }
+            // Naviqasiya zamanı bundle-ı ötürürük
+            findNavController().navigate(R.id.action_moreNewInFragment_to_productInfoFragment, bundle)
         }
 
         binding.rvProducts.apply {

@@ -1,19 +1,561 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".homescreens.home.ProductInfoFragment">
+    android:background="#FAF8F5">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ProductInfo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- ===== HERO IMAGE ===== -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="360dp">
+
+            <ImageView
+                android:id="@+id/ivProductHero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#D0C4B0"
+                android:src="@drawable/party"/>
+
+            <!-- Back Button -->
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="16dp"
+                android:src="@drawable/arrow_back"
+                android:background="@drawable/bg_circle_white"
+                android:contentDescription="Geri"
+                android:padding="8dp"/>
+
+        </FrameLayout>
+
+        <!-- ===== WHITE CARD ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="-20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="32dp">
+
+            <!-- Title + Wishlist -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvProductName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blue Party Dress"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A1A"/>
+
+                    <TextView
+                        android:id="@+id/tvSellerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lana Butiq"
+                        android:textSize="13sp"
+                        android:textColor="#AAAAAA"
+                        android:layout_marginTop="2dp"/>
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnWishlist"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/unsaved"
+                    android:background="@drawable/bg_circle_white_shadow"
+                    android:contentDescription="Wishlist"
+                    android:padding="8dp"/>
+
+            </LinearLayout>
+
+            <!-- Price Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$158.2"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"/>
+
+            </LinearLayout>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
+                android:textSize="13sp"
+                android:textColor="#666666"
+                android:lineSpacingExtra="3dp"
+                android:maxLines="3"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/tvReadMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daha çox göstər"
+                android:textSize="12sp"
+                android:textColor="#C9963A"
+                android:layout_marginTop="2dp"/>
+
+            <!-- Date -->
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Son əlavə tarixi: 12.20.2019"
+                android:textSize="11sp"
+                android:textColor="#BBBBBB"/>
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ===== XÜSUSİYYƏTLƏR ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xüsusiyyətlər"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Condition"
+                    android:textSize="13sp"
+                    android:textColor="#AAAAAA"/>
+
+                <TextView
+                    android:id="@+id/tvCondition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Used"
+                    android:textSize="13sp"
+                    android:textColor="#1A1A1A"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Category"
+                    android:textSize="13sp"
+                    android:textColor="#AAAAAA"/>
+
+                <TextView
+                    android:id="@+id/tvCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Party Dress"
+                    android:textSize="13sp"
+                    android:textColor="#1A1A1A"/>
+
+            </LinearLayout>
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ===== MÖVCÜD ÖLÇÜLƏR ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mövcüd ölçülər"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSizeSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Small"
+                    android:textSize="12sp"
+                    android:textColor="#1A1A1A"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#DDDDDD"
+                    app:cornerRadius="20dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"/>
+
+                <Button
+                    android:id="@+id/btnSizeMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Medium"
+                    android:textSize="12sp"
+                    android:textColor="#1A1A1A"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#DDDDDD"
+                    app:cornerRadius="20dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"/>
+
+                <Button
+                    android:id="@+id/btnSizeLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Large"
+                    android:textSize="12sp"
+                    android:textColor="#1A1A1A"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#DDDDDD"
+                    app:cornerRadius="20dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"/>
+
+                <Button
+                    android:id="@+id/btnSizeXLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="X-Large"
+                    android:textSize="12sp"
+                    android:textColor="#1A1A1A"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#DDDDDD"
+                    app:cornerRadius="20dp"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"/>
+
+            </LinearLayout>
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ===== KİRAYƏ MÜDDƏTİ ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Kiraye müddəti"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"/>
+
+                <Button
+                    android:id="@+id/btnRentDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="1 gün"
+                    android:textSize="13sp"
+                    android:textColor="#1A1A1A"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="#DDDDDD"
+                    app:cornerRadius="20dp"
+                    app:iconGravity="end"
+                    app:icon="@drawable/vector__stroke_"
+                    app:iconTint="#AAAAAA"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"/>
+
+            </LinearLayout>
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ===== SATICI MƏLUMATLARI ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Satıcı məlumatları"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Seller Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="14dp">
+
+                <ImageView
+                    android:id="@+id/ivSellerAvatar"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_circle_gray"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Seller"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:id="@+id/tvSellerNameDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lana Butiq"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#1A1A1A"/>
+
+                    <TextView
+                        android:id="@+id/tvSellerSub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="İlk dəfə satıcı olursunuz"
+                        android:textSize="11sp"
+                        android:textColor="#AAAAAA"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnViewSeller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Satıcı axtar >"
+                    android:textSize="11sp"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#1A1A1A"
+                    style="@style/Widget.MaterialComponents.Button"
+                    app:cornerRadius="20dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"/>
+
+            </LinearLayout>
+
+            <!-- Phone -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/phone_icon"
+                    android:contentDescription="Phone"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Əlaqə"
+                        android:textSize="13sp"
+                        android:textColor="#1A1A1A"/>
+
+                    <TextView
+                        android:id="@+id/tvPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+994(70) 211 25 25"
+                        android:textSize="13sp"
+                        android:textColor="#555555"
+                        android:layout_marginTop="1dp"/>
+
+                    <TextView
+                        android:id="@+id/tvCallLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Zəng edin"
+                        android:textSize="12sp"
+                        android:textColor="#C9963A"
+                        android:layout_marginTop="1dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Address -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="top"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ünvan"
+                        android:textSize="13sp"
+                        android:textColor="#1A1A1A"/>
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bakı Xocək prospekti"
+                        android:textSize="13sp"
+                        android:textColor="#555555"
+                        android:layout_marginTop="1dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F0F0F0"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ===== REVIEW AND COMMENTS ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Review and comments"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#1A1A1A"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tvRatingScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.9"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A1A"/>
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:rating="4.9"
+                    android:stepSize="0.1"
+                    android:isIndicator="true"
+                    style="@style/Widget.AppCompat.RatingBar"
+                    android:progressTint="#F5A623"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnWriteReview"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Rəy bildirin"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#1A1A1A"
+                style="@style/Widget.MaterialComponents.Button"
+                app:cornerRadius="14dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
