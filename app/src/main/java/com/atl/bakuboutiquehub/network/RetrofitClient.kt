@@ -8,8 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    // 192.168.53.98 is your computer's local IP for physical device testing
-    private const val BASE_URL = "http://192.168.53.98:8080/"
+    // Live Render URL for backend
+    private const val BASE_URL = "https://bakuboutiquehub.onrender.com/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
