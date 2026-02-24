@@ -5,5 +5,8 @@ data class SignupRequest(
     val password: String,
     val fullName: String,
     val phoneNumber: String,
+    val gender: String? = null,
+    val age: Int? = null,
+    val referralSource: String? = null,
     val roles: Set<String>? = null
 )
